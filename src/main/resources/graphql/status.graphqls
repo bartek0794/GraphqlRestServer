@@ -1,0 +1,15 @@
+type Status {
+    id: ID!
+    name: String
+}
+
+extend type Query {
+    status(id: ID!): Status
+    findAllStatuses: [Status]!
+}
+
+extend type Mutation {
+    newStatus(name: String!): Status!
+    updateStatus(id: ID!, name: String!): Status
+    deleteStatus(id: ID): Boolean!
+}

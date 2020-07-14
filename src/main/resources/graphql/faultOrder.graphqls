@@ -1,0 +1,24 @@
+type FaultOrder {
+    id: ID!
+    title: String
+    status: Status!
+    priority: Priority
+    customer: Customer!
+    employee: Employee!
+    description: String
+    note: String
+    createDate: String
+    realizationDate: String
+    finishDate: String
+    result: Result
+
+}
+
+extend type Query {
+    faultOrder(id: ID!): FaultOrder
+    findAllFaultOrders: [FaultOrder]!
+}
+
+extend type Mutation {
+    deleteFaultOrder(id: ID): Boolean!
+}

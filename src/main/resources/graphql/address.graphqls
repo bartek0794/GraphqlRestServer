@@ -1,0 +1,18 @@
+type Address {
+    id: ID!
+    city: String
+    street: String
+    streetNumber: String
+    homeNumber: String
+}
+
+extend type Query {
+    address(id: ID!): Address
+    findAllAddresses: [Address]!
+}
+
+extend type Mutation {
+    newAddress(city: String!, street: String!, streetNumber: String!, homeNumber: String!): Address!
+    updateAddress(id: ID!, city: String!, street: String!, streetNumber: String!, homeNumber: String!): Address
+    deleteAddress(id: ID): Boolean!
+}

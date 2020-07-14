@@ -1,0 +1,19 @@
+type Employee {
+    id: ID!
+    firstName: String
+    lastName: String!
+    phoneNumber: String!
+    email: String!
+    company: Company!
+}
+
+extend type Query {
+    employee(id: ID!): Employee
+    findAllEmployees: [Employee]!
+}
+
+extend type Mutation {
+    newEmployee(firstName: String!, lastName: String!, phoneNumber: String!, email: String!, companyId: ID!): Employee!
+    updateEmployee(id: ID!, firstName: String!, lastName: String!, phoneNumber: String!, email: String!, companyId: ID!): Employee
+    deleteEmployee(id: ID): Boolean!
+}

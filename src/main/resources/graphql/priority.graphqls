@@ -1,0 +1,15 @@
+type Priority {
+    id: ID!
+    name: String
+}
+
+extend type Query {
+    priority(id: ID!): Priority
+    findAllPriorities: [Priority]!
+}
+
+extend type Mutation {
+    newPriority(name: String!): Priority!
+    updatePriority(id: ID!, name: String!): Priority
+    deletePriority(id: ID): Boolean!
+}
