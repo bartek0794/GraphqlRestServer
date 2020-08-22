@@ -5,11 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import server.model.*;
-import server.repository.CustomerRepository;
-import server.repository.EmployeeRepository;
 import server.repository.OrderRepository;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +17,6 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
 
     @GetMapping("/findAllOrders")
     public Iterable<FaultOrder> findAllOrders() {
@@ -33,9 +28,9 @@ public class OrderController {
         return orderRepository.findById(id);
     }
 
-    @GetMapping("/employee")
-    public Optional<Employee> employee(@RequestParam(value = "id") Long id) {
-        return employeeRepository.findById(id);
+    @RequestMapping(value="/createFaultOrder", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    FaultOrder createFaultOrder(@RequestBody FaultOrder newFaultOrder) {
+        return orderRepository.save(newFaultOrder);
     }
 
     @DeleteMapping("/deleteOrder")
@@ -72,36 +67,8 @@ public class OrderController {
     }
 
 
-    @RequestMapping(value="/createFaultOrder", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    FaultOrder createFaultOrder(@RequestBody FaultOrder newFaultOrder) {
-        return orderRepository.save(newFaultOrder);
-    }
 
 
-    @PostMapping(value="/newFaultOrder")
-    FaultOrder createFaultOrderByParam(@RequestParam(value = "title") String title, @RequestParam(value = "statusId") Long statusId, @RequestParam(value = "priorityId") Long priorityId,
-                                       @RequestParam(value = "customerId") Long customerId, @RequestParam(value = "employeeId") Long employeeId,
-                                       @RequestParam(value = "description") String description, @RequestParam(value = "note") String note, @RequestParam(value = "createDate") String createDate,
-                                       @RequestParam(value = "realizationDate") String realizationDate, @RequestParam(value = "finishDate") String finishDate, @RequestParam(value = "resultId") Long resultId) throws ParseException {
-
-        FaultOrder faultOrder = new FaultOrder();
-
-        faultOrder.setTitle(title);
-        faultOrder.setStatus(new Status(statusId));
-        faultOrder.setPriority(new Priority(priorityId));
-        faultOrder.setCustomer(new Customer(customerId));
-        faultOrder.setEmployee(new Employee(employeeId));
-        faultOrder.setDescription(description);
-        faultOrder.setNote(note);
-        faultOrder.setCreateDate(new Date());
-        faultOrder.setRealizationDate(new Date());
-        faultOrder.setFinishDate(new Date());
-        faultOrder.setResult(new Result(resultId));
-
-        orderRepository.save(faultOrder);
-
-        return faultOrder;
-    }
 
 
 
