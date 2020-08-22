@@ -16,6 +16,10 @@ public class Priority {
 
     private String name;
 
+    public Priority(Long id) {
+        this.id = id;
+    }
+
     public Priority(String name) {
         this.name = name;
     }

@@ -19,6 +19,10 @@ public class Result {
 
     private String name;
 
+    public Result(Long id) {
+        this.id = id;
+    }
+
     public Result(String name) {
         this.name = name;
     }

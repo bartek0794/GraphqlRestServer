@@ -25,6 +25,10 @@ public class Employee {
     @JoinColumn(name = "COMPANY_ID", nullable = false)
     private Company company;
 
+    public Employee(Long id) {
+        this.id = id;
+    }
+
     public Employee(String firstName, String lastName, String phoneNumber, String email, Company company) {
         this.firstName = firstName;
         this.lastName = lastName;

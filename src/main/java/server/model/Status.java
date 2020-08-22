@@ -11,13 +11,17 @@ import javax.persistence.Id;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Status {
+public class    Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String name;
+
+    public Status(Long id) {
+        this.id = id;
+    }
 
     public Status(String name) {
         this.name = name;

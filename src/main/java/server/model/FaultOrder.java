@@ -8,11 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "FAULT_ORDER")
+@Table(name = "FAULT_ORDER")
 @Getter @Setter @NoArgsConstructor
 public class FaultOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;

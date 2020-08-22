@@ -25,6 +25,10 @@ public class Customer {
     @JoinColumn(name = "ADDRESS_ID", nullable = false)
     private Address address;
 
+    public Customer(Long id) {
+        this.id = id;
+    }
+
     public Customer(String firstName, String lastName, String phoneNumber, String email, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;

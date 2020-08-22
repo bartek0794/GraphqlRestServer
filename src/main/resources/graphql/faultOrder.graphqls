@@ -20,5 +20,9 @@ extend type Query {
 }
 
 extend type Mutation {
-    deleteFaultOrder(id: ID): Boolean!
+    newFaultOrder(title: String!, statusId: ID!, priorityId: ID!, customerId: ID!, employeeId: ID!,
+                  description: String, note: String, createDate: String, realizationDate: String, finishDate: String, resultId: ID!): FaultOrder!
+    updateFaultOrder(id: ID!, title: String!, statusId: ID!, priorityId: ID!, customerId: ID!, employeeId: ID!,
+                  description: String, note: String, createDate: String, realizationDate: String, finishDate: String, resultId: ID!): FaultOrder
+    deleteFaultOrder: Boolean!
 }

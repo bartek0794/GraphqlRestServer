@@ -1,10 +1,10 @@
 type Customer {
     id: ID!
     firstName: String
-    lastName: String!
-    phoneNumber: String!
-    email: String!
-    address: Address!
+    lastName: String
+    phoneNumber: String
+    email: String
+    address: Address
 }
 
 extend type Query {
