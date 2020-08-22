@@ -17,15 +17,14 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @GetMapping("/order")
+    public Optional<FaultOrder> order(@RequestParam(value = "id") Long id) {
+        return orderRepository.findById(id);
+    }
 
     @GetMapping("/findAllOrders")
     public Iterable<FaultOrder> findAllOrders() {
         return orderRepository.findAll();
-    }
-
-    @GetMapping("/order")
-    public Optional<FaultOrder> order(@RequestParam(value = "id") Long id) {
-        return orderRepository.findById(id);
     }
 
     @RequestMapping(value="/createFaultOrder", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

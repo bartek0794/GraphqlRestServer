@@ -12,19 +12,17 @@ public class Query implements GraphQLQueryResolver {
     private AddressRepository addressRepository;
     private CustomerRepository customerRepository;
     private EmployeeRepository employeeRepository;
-    private OrderRepository orderRepository;
     private PriorityRepository priorityRepository;
     private ResultRepository resultRepository;
     private StatusRepository statusRepository;
     private CompanyRepository companyRepository;
 
     public Query(AddressRepository addressRepository, CustomerRepository customerRepository,
-                 EmployeeRepository employeeRepository, OrderRepository orderRepository, PriorityRepository priorityRepository, ResultRepository resultRepository, StatusRepository statusRepository,
+                 EmployeeRepository employeeRepository, PriorityRepository priorityRepository, ResultRepository resultRepository, StatusRepository statusRepository,
                  CompanyRepository companyRepository) {
         this.addressRepository = addressRepository;
         this.customerRepository = customerRepository;
         this.employeeRepository = employeeRepository;
-        this.orderRepository = orderRepository;
         this.priorityRepository = priorityRepository;
         this.resultRepository = resultRepository;
         this.statusRepository = statusRepository;
@@ -53,14 +51,6 @@ public class Query implements GraphQLQueryResolver {
 
     public Iterable<Employee> findAllEmployees() {
         return employeeRepository.findAll();
-    }
-
-    public Optional<FaultOrder> faultOrder(Long id) {
-        return orderRepository.findById(id);
-    }
-
-    public Iterable<FaultOrder> findAllFaultOrders() {
-        return orderRepository.findAll();
     }
 
     public Optional<Priority> priority(Long id) {
